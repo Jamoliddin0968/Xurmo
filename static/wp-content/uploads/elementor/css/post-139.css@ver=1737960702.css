@@ -6,40 +6,6 @@
     padding: 0px 0px 0px 0px;
 }
 
-.elementor-139 .elementor-element.elementor-element-cfb01b2:not(.elementor-motion-effects-element-type-background)>.elementor-widget-wrap,
-.elementor-139 .elementor-element.elementor-element-cfb01b2>.elementor-widget-wrap>.elementor-motion-effects-container>.elementor-motion-effects-layer {
-    background-image: url("{% static 'wp-content/uploads/apples1.jpg' %}");background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.elementor-139 .elementor-element.elementor-element-cfb01b2>.elementor-element-populated>.elementor-background-overlay {
-    background-color: transparent;
-    background-image: linear-gradient(180deg, #78AA0000 0%, var(--e-global-color-primary) 100%);
-    opacity: 1;
-    filter: brightness(100%) contrast(100%) saturate(100%) blur(0px) hue-rotate(0deg);
-}
-
-.elementor-139 .elementor-element.elementor-element-cfb01b2>.elementor-widget-wrap>.elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute) {
-    margin-bottom: 10px;
-}
-
-.elementor-139 .elementor-element.elementor-element-cfb01b2:hover>.elementor-element-populated>.elementor-background-overlay {
-    filter: brightness(100%) contrast(100%) saturate(100%) blur(0px) hue-rotate(0deg);
-}
-
-.elementor-139 .elementor-element.elementor-element-cfb01b2>.elementor-element-populated {
-    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    margin: 0px 10px 0px 10px;
-    --e-column-margin-right: 10px;
-    --e-column-margin-left: 10px;
-    padding: 300px 0px 50px 0px;
-}
-
-.elementor-139 .elementor-element.elementor-element-cfb01b2>.elementor-element-populated>.elementor-background-overlay {
-    transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
-}
-
 .elementor-widget-heading .elementor-heading-title {
     font-family: var(--e-global-typography-primary-font-family), Sans-serif;
     color: var(--e-global-color-primary);
