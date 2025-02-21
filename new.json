@@ -1,0 +1,25 @@
+{
+    "ipAddress": "192.0.0.64",
+    "portNo": 8000,
+    "protocol": "HTTP",
+    "dateTime": "2025-02-21T15:48:17+08:00",
+    "activePostCount": 1,
+    "eventType": "AccessControllerEvent",
+    "eventState": "active",
+    "eventDescription": "Access Controller Event",
+    "AccessControllerEvent": {
+        "deviceName": "DS-K1T804BMF",
+        "majorEventType": 5,
+        "subEventType": 38,
+        "cardType": 1,
+        "cardReaderNo": 1,
+        "doorNo": 1,
+        "employeeNo": 1,
+        "employeeNoString": "1",
+        "serialNo": 727,
+        "userType": "normal",
+        "attendanceStatus": "undefined",
+        "statusValue": 0,
+        "picturesNumber": 0
+    }
+}

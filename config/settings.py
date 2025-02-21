@@ -143,4 +143,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTH_USER_MODEL = "users.CustomUser"
-CSRF_TRUSTED_ORIGINS=['http://192.168.31.40:8001']
+CSRF_TRUSTED_ORIGINS=['http://192.168.31.40:8001','http://192.168.31.239:8000'                      ]
