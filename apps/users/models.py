@@ -5,7 +5,7 @@ class CustomUser(AbstractUser):
     birth_date = models.DateField(null=True, blank=True)
     position = models.CharField(max_length=100, null=True, blank=True)
     address = models.CharField(max_length=255, null=True, blank=True)
-    work_time = models.TimeField()  #
+    work_time = models.TimeField(null=True,)  #
 
     def __str__(self):
         return f"{self.username} ({self.email})"

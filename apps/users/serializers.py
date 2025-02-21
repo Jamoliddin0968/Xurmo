@@ -4,7 +4,7 @@ from .models import CustomUser
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ("id", "username", "email", "first_name", "last_name", "birth_date", "position", "address")
+        fields = ("id", "username", "email", "first_name", "last_name", "birth_date", "position","work_time", "address")
 
 from rest_framework import serializers
 from .models import Attendance
