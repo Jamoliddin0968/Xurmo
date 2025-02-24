@@ -5,3 +5,4 @@ drf_spectacular
 django-filter
 pydantic
 celery
+django-jazzmin
