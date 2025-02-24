@@ -135,7 +135,7 @@ class ReceiveDataView(APIView):
         # Create an Attendance record
         attendance = Attendance.objects.get_or_create(
             user=user,
-            serial_id=event.AccessControllerEvent.serialNo,
+            date=event.dateTime.date(),
             defaults={
                 "date": event.dateTime,
                 "work_time": user.work_time,
@@ -147,11 +147,4 @@ class ReceiveDataView(APIView):
 
         )
 
-        # # Optionally, you can also handle reasons for being late or not showing up
-        # if late_minutes is not None and late_minutes > 0:
-        #     attendance.reason = f"Late by {late_minutes} minutes"
-
-        # attendance.save()
-
         return Response({"message": "Attendance updated successfully."}, status=200)
-        return Response({'message': 'Data received successfully', 'data': ""})
