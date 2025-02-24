@@ -1,0 +1,5 @@
+django
+pillow
+djangorestframework
+drf_spectacular
+django-filters

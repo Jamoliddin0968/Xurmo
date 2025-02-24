@@ -9,9 +9,18 @@ class CustomUser(AbstractUser):
     address = models.CharField(max_length=255, null=True, blank=True)
     work_time = models.TimeField(null=True,)
     employee_id = models.CharField(max_length=20, null=True, blank=True)
+    phone = models.CharField(max_length=20, null=True, blank=True)
+    photo = models.ImageField(
+        upload_to="users/", null=True, blank=True, verbose_name="Rasm")
+
+    def get_rating(self):
+        return float(5)
 
     def __str__(self):
-        return f"{self.first_name} ({self.last_name})"
+        name = f"{self.first_name} ({self.last_name})"
+        if name == "":
+            name = self.username
+        return name
 
 
 class ATTENDANCE_STATUS_CHOICES(models.TextChoices):
@@ -23,19 +32,17 @@ class ATTENDANCE_STATUS_CHOICES(models.TextChoices):
 class Attendance(models.Model):
     user = models.ForeignKey(
         CustomUser, on_delete=models.CASCADE, related_name="attendances")
-    date = models.DateField()  # Sana
-    work_time = models.TimeField(null=True)  # Ish vaqti (8:00, 9:00 va h.k.)
-    arrival_time = models.TimeField(null=True, blank=True)  # Kelgan vaqti
+    date = models.DateField()
+    work_time = models.TimeField(null=True)
+    arrival_time = models.TimeField(null=True, blank=True)
     late_minutes = models.PositiveIntegerField(
-        null=True, blank=True)  # Necha daqiqaga kechikkan
-    # Kech kelgan yoki kelmagan sababi
+        null=True, blank=True)
     reason = models.TextField(null=True, blank=True)
     serial_id = models.PositiveIntegerField(null=True)
     status = models.CharField(max_length=20, choices=ATTENDANCE_STATUS_CHOICES.choices,
-                              default=ATTENDANCE_STATUS_CHOICES.ABSENT)  # Davomat holati
+                              default=ATTENDANCE_STATUS_CHOICES.ABSENT)
 
     class Meta:
-        # unique_together = ("user", "date")  # Har bir foydalanuvchi uchun bitta sana bo'lishi kerak
         verbose_name = "Davomat"
         verbose_name_plural = "Davomatlar"
 
