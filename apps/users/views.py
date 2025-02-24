@@ -143,8 +143,6 @@ class ReceiveDataView(APIView):
                 "late_minutes": late_minutes,
                 "serial_id": event.AccessControllerEvent.serialNo
             }
-
-
         )
 
         return Response({"message": "Attendance updated successfully."}, status=200)

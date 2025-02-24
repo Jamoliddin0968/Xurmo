@@ -8,7 +8,10 @@ class CustomUserAdmin(admin.ModelAdmin):
     model = CustomUser
     # list_display = ("username", "email", "first_name", "last_name", "position",)
     fields = ("employee_id", "first_name",
-              "last_name", "position", "work_time")
+              "last_name",
+              "position",
+              "work_time", "birth_date",
+              "address", "phone", "photo")
     readonly_fields = ("employee_id",)
 
 
