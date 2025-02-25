@@ -22,6 +22,10 @@ class CustomUser(AbstractUser):
             name = self.username
         return name
 
+    class Meta:
+        verbose_name = "Xodim"
+        verbose_name_plural = "Xodimlar"
+
 
 class ATTENDANCE_STATUS_CHOICES(models.TextChoices):
     COME = "come", "Kelgan"
