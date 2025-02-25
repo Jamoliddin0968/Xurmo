@@ -26,7 +26,7 @@ class CustomUser(AbstractUser):
         return float(5)
 
     def __str__(self):
-        name = f"{self.first_name} ({self.last_name})"
+        name = f"{self.first_name} {self.last_name}"
         if name == "":
             name = self.username
         return name
