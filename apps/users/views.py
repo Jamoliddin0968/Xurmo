@@ -132,7 +132,9 @@ class ReceiveDataView(APIView):
 
         # Calculate late minutes, if the user arrives after work start time
         late_minutes = calculate_late_minutes(event.dateTime, user.work_time)
-        # Create an Attendance record
+        status = ATTENDANCE_STATUS_CHOICES.COME
+        if late_minutes and late_minutes > 0:
+            status = ATTENDANCE_STATUS_CHOICES.LATE
         attendance = Attendance.objects.get_or_create(
             user=user,
             date=event.dateTime.date(),
@@ -141,7 +143,8 @@ class ReceiveDataView(APIView):
                 "work_time": user.work_time,
                 "arrival_time": event.dateTime,
                 "late_minutes": late_minutes,
-                "serial_id": event.AccessControllerEvent.serialNo
+                "serial_id": event.AccessControllerEvent.serialNo,
+                "status": status
             }
         )
 
