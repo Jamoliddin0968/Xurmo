@@ -23,8 +23,8 @@ class AttendanceAdmin(admin.ModelAdmin):
                     'late_minutes', 'reason', 'serial_id')
     ordering = ['-id']  # Sort by id in the admin panel
     list_filter = ("user",)
-    # readonly_fields = ("user", "date", "work_time",
-    #                    "arrival_time", "late_minutes", "status",  "serial_id")
+    readonly_fields = ("user", "date", "work_time",
+                       "arrival_time", "late_minutes", "status",  "serial_id")
 
 
 # Register your model with the custom admin class
