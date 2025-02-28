@@ -27,8 +27,8 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         name = f"{self.first_name} {self.last_name}"
-        if name == "":
-            name = self.username
+        if not self.first_name:
+            return f"user-{self.employee_id}"
         return name
 
     class Meta:
