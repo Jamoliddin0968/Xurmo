@@ -1,0 +1,32 @@
+name: Deploy Xurmo Project
+
+on:
+  push:
+    branches:
+      - master  # Master ga push qilinganda ishlaydi
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Kodni yuklash
+        uses: actions/checkout@v3
+
+      - name: Serverga ulanish va loyihani yangilash
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /var/www/Xurmo
+            git pull origin master
+            source env/bin/activate
+            pip install -r requirements.txt
+            python manage.py migrate
+            python manage.py collectstatic --noinput
+            systemctl restart gunicorn_xurmo
+            systemctl restart nginx
+            systemctl restart celery
+            systemctl restart celery-beat
