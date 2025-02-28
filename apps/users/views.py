@@ -9,11 +9,12 @@ from django.http import HttpRequest
 from django.utils.timezone import make_aware
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, generics, permissions, viewsets
+from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.views import APIView
 
-from .models import ATTENDANCE_STATUS_CHOICES, Attendance, CustomUser
+from .models import (ATTENDANCE_STATUS_CHOICES, Attendance, AttendanceItems,
+                     CustomUser)
 from .schema import Event
 from .serializers import AttendanceSerializer, CustomUserSerializer
 
@@ -58,7 +59,6 @@ class AttendanceViewSet(viewsets.ModelViewSet):
         start_of_month = target_date.replace(day=1)
         last_day = monthrange(target_date.year, target_date.month)[1]
         end_of_month = target_date.replace(day=last_day)
-
         monthly_absent = qs.filter(
             date__range=[start_of_month, end_of_month],
             status=ATTENDANCE_STATUS_CHOICES.ABSENT
@@ -79,7 +79,6 @@ class AttendanceViewSet(viewsets.ModelViewSet):
                 "late_minutes": monthly_late_minutes,
             }
         }
-        print(result)
 
         return result
 
@@ -101,10 +100,11 @@ def calculate_late_minutes(event_datetime: datetime, user_work_time: time) -> in
     # return int((event_datetime.time()-user_work_time))
 
 
-class ReceiveDataView(APIView):
-    def post(self, request: HttpRequest):
-        json = loads(request.body)
-        event = Event.model_validate(json)
+class ReceiveDataView(GenericAPIView):
+    serializer_class = AttendanceSerializer
+
+    def post(self, *args, **kwargs):
+        event = Event.model_validate(self.request.data)
         user_id = event.AccessControllerEvent.employeeNoString
         if not user_id or user_id == "0":
             return Response({"mess": "dfdhub"})
@@ -114,28 +114,12 @@ class ReceiveDataView(APIView):
                 employee_id=user_id,
                 username=f"username_{user_id}_{str(uuid4())}"
             )
-        # if event.dateTime:
-        #     # If your event datetime is in string format, convert it to a datetime object
-        #     event_datetime = datetime.strptime(event.dateTime, "%Y-%m-%dT%H:%M:%S")  # Adjust format if necessary
 
-        # else:
-        #     event_datetime = datetime.now()
-
-        # Example work time calculation, you can modify based on your logic
-        # work_start_time = eve
-        # work_end_time = work_start_time + timedelta(hours=8)  # Assuming 8-hour work shift
-
-        # # Calculate arrival time
-        # arrival_time = 0
-        # if user.work_time:
-        #     arrival_time = event.dateTime.time()-user.work_time
-
-        # Calculate late minutes, if the user arrives after work start time
         late_minutes = calculate_late_minutes(event.dateTime, user.work_time)
         status = ATTENDANCE_STATUS_CHOICES.COME
         if late_minutes and late_minutes > 0:
             status = ATTENDANCE_STATUS_CHOICES.LATE
-        attendance = Attendance.objects.get_or_create(
+        attendance, _ = Attendance.objects.get_or_create(
             user=user,
             date=event.dateTime.date(),
             defaults={
@@ -145,6 +129,16 @@ class ReceiveDataView(APIView):
                 "late_minutes": late_minutes,
                 "serial_id": event.AccessControllerEvent.serialNo,
                 "status": status
+            }
+        )
+        AttendanceItems.objects.get_or_create(
+            serial_id=event.AccessControllerEvent.serialNo,
+            defaults={
+                "user": user,
+                "attendance": attendance,
+                "marked_at": event.dateTime,
+                "serial_id": event.AccessControllerEvent.serialNo,
+                'data': event.model_dump_json()
             }
         )
 

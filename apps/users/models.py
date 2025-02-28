@@ -42,6 +42,11 @@ class ATTENDANCE_STATUS_CHOICES(models.TextChoices):
     LATE = "late", "Kech kelgan"
 
 
+class ATTENDANCE_ITEM_STATUS_CHOICES(models.TextChoices):
+    CAME = "came", "Keldi"
+    LEFT = "left", "Ketdi"
+
+
 class Attendance(models.Model):
     user = models.ForeignKey(
         CustomUser, on_delete=models.CASCADE, related_name="attendances",
@@ -64,3 +69,24 @@ class Attendance(models.Model):
 
     def __str__(self):
         return f"{self.user.first_name} - {self.date} - {self.arrival_time or 'Kelmagan'}"
+
+
+class AttendanceItems(models.Model):
+    attendance = models.ForeignKey(
+        Attendance, on_delete=models.SET_NULL, related_name="attendances_items",
+        verbose_name="Davomat", null=True, blank=True
+    )
+    user = models.ForeignKey(
+        CustomUser, on_delete=models.CASCADE, related_name="attendances_items",
+        verbose_name="Xodim")
+    marked_at = models.DateTimeField(verbose_name="Sana")
+    serial_id = models.PositiveIntegerField(
+        null=True, verbose_name="Tartib raqami")
+    status = models.CharField(max_length=20, choices=ATTENDANCE_ITEM_STATUS_CHOICES.choices,
+                              default=ATTENDANCE_ITEM_STATUS_CHOICES.LEFT, verbose_name="Holat")
+
+    data = models.TextField(null=True, blank=True)
+
+    class Meta:
+        verbose_name = "Davomat"
+        verbose_name_plural = "Davomat"
