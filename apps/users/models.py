@@ -1,6 +1,9 @@
+from datetime import datetime, timedelta
+
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class CustomUser(AbstractUser):
@@ -45,6 +48,60 @@ class ATTENDANCE_STATUS_CHOICES(models.TextChoices):
 class ATTENDANCE_ITEM_STATUS_CHOICES(models.TextChoices):
     CAME = "came", "Keldi"
     LEFT = "left", "Ketdi"
+
+
+class WorkingDay(models.Model):
+    class DayType(models.TextChoices):
+        WORKDAY = 'workday', _('Ish kuni')
+        WEEKEND = 'weekend', _('Dam olish kuni')
+        HOLIDAY = 'holiday', _('Bayram kuni')
+
+    start_datetime = models.DateTimeField(
+        unique=True, verbose_name="Ish kuni boshlanishi")
+    end_datetime = models.DateTimeField(verbose_name="Ish kuni tugashi")
+    day_type = models.CharField(
+        max_length=10,
+        choices=DayType.choices,
+        default=DayType.WORKDAY,
+        verbose_name="Kun turi"
+    )
+    is_closed = models.BooleanField(default=False, verbose_name="Yopiqmi")
+
+    created_at = models.DateTimeField(
+        auto_now_add=True, verbose_name="Yaratilgan")
+    updated_at = models.DateTimeField(
+        auto_now=True, verbose_name="Yangilangan")
+
+    class Meta:
+        verbose_name = "Рабочий день"
+        verbose_name_plural = "Рабочие дни"
+        ordering = ['start_datetime']
+
+    def __str__(self):
+        return f"{self.start_datetime} - {self.end_datetime} ({self.get_day_type_display()})"
+
+    @classmethod
+    def create_new_working_day(cls):
+        """Создает новый рабочий день, начиная с 4:00 утра"""
+        today = datetime.today().date()
+        start_time = datetime.combine(today, datetime.min.time()).replace(
+            hour=4, minute=0, second=0)
+        end_time = start_time + timedelta(days=1)
+
+        if not cls.objects.filter(start_datetime=start_time).exists():
+            return cls.objects.create(start_datetime=start_time, end_datetime=end_time)
+        return None
+
+    def is_current_working_day(self):
+        """Определяет, находится ли сейчас время в пределах рабочего дня"""
+        now = datetime.now()
+        return self.start_datetime <= now < self.end_datetime
+
+    @classmethod
+    def get_current_working_day(cls):
+        """Возвращает текущий рабочий день (если есть), иначе None"""
+        now = datetime.now()
+        return cls.objects.filter(start_datetime__lte=now, end_datetime__gt=now).first()
 
 
 class Attendance(models.Model):

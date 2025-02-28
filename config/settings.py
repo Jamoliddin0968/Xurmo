@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 
+from celery.schedules import crontab
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -123,7 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'uz'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 
@@ -148,3 +150,14 @@ ADMIN_SITE_HEADER = "e-Xodim (Xurmo)"
 AUTH_USER_MODEL = "users.CustomUser"
 CSRF_TRUSTED_ORIGINS = ['http://192.168.31.40:8001',
                         'http://192.168.31.239:8000', 'http://192.168.31.40:7000']
+
+
+CELERY_BROKER_URL = "redis://localhost:6379/0"
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_BEAT_SCHEDULE = {
+    "send_enterance_turniket_report": {
+        "task": "apps.users.tasks.write_numbers",
+        "schedule": crontab(hour=4, minute=1),
+    },
+}

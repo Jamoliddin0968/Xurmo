@@ -6,3 +6,4 @@ django-filter
 pydantic
 celery
 django-jazzmin
+redis
