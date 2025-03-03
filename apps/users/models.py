@@ -108,6 +108,9 @@ class Attendance(models.Model):
     user = models.ForeignKey(
         CustomUser, on_delete=models.CASCADE, related_name="attendances",
         verbose_name="Xodim")
+    working_day = models.ForeignKey(
+        WorkingDay, on_delete=models.SET_NULL, related_name="attendances", null=True, blank=True,
+        verbose_name="Ish kuni")
     date = models.DateField(verbose_name="Sana")
     work_time = models.TimeField(null=True, verbose_name="Ish vaqti")
     arrival_time = models.TimeField(

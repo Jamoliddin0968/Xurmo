@@ -14,7 +14,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from .models import (ATTENDANCE_STATUS_CHOICES, Attendance, AttendanceItems,
-                     CustomUser)
+                     CustomUser, WorkingDay)
 from .schema import Event
 from .serializers import AttendanceSerializer, CustomUserSerializer
 
@@ -119,11 +119,14 @@ class ReceiveDataView(GenericAPIView):
         status = ATTENDANCE_STATUS_CHOICES.COME
         if late_minutes and late_minutes > 0:
             status = ATTENDANCE_STATUS_CHOICES.LATE
+        working_day = WorkingDay.get_current_working_day()
         attendance, _ = Attendance.objects.get_or_create(
             user=user,
-            date=event.dateTime.date(),
+            working_day=working_day,
+
             defaults={
-                "date": event.dateTime,
+                "date": event.dateTime.date(),
+
                 "work_time": user.work_time,
                 "arrival_time": event.dateTime,
                 "late_minutes": late_minutes,
