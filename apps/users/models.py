@@ -17,7 +17,8 @@ class CustomUser(AbstractUser):
         max_length=100, null=True, blank=True, verbose_name="Lavozim")
     address = models.CharField(
         max_length=255, null=True, blank=True, verbose_name="Manzil")
-    work_time = models.TimeField(null=True, verbose_name="Ish vaqti")
+    work_time = models.TimeField(
+        null=True, blank=True, verbose_name="Ish vaqti")
     employee_id = models.CharField(
         max_length=20, null=True, blank=True, verbose_name="Xodim ID")
     phone = models.CharField(max_length=20, null=True,
