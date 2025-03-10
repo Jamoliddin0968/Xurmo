@@ -120,20 +120,20 @@ class ReceiveDataView(GenericAPIView):
         if late_minutes and late_minutes > 0:
             status = ATTENDANCE_STATUS_CHOICES.LATE
         working_day = WorkingDay.get_current_working_day()
-        attendance, _ = Attendance.objects.get_or_create(
-            user=user,
-            working_day=working_day,
 
-            defaults={
-                "date": event.dateTime.date(),
-
-                "work_time": user.work_time,
-                "arrival_time": event.dateTime,
-                "late_minutes": late_minutes,
-                "serial_id": event.AccessControllerEvent.serialNo,
-                "status": status
-            }
-        )
+        attendance, _ = Attendance.objects.get_or_create(user=user,
+                                                         working_day=working_day,)
+        if attendance.status == ATTENDANCE_STATUS_CHOICES.ABSENT:
+            attendance.date = event.dateTime.date()
+            attendance.work_time = user.work_time
+            attendance.arrival_time = event.dateTime
+            attendance.late_minutes = late_minutes
+            attendance.serial_id = event.AccessControllerEvent.serialNo
+            attendance.status = status
+            attendance.save()  # O'zgarishlarni saqlash uchun
+        elif attendance.serial_id != event.AccessControllerEvent.serialNo:
+            attendance.left_time = event.dateTime
+            attendance.save()
         AttendanceItems.objects.get_or_create(
             serial_id=event.AccessControllerEvent.serialNo,
             defaults={

@@ -111,10 +111,14 @@ class Attendance(models.Model):
     working_day = models.ForeignKey(
         WorkingDay, on_delete=models.SET_NULL, related_name="attendances", null=True, blank=True,
         verbose_name="Ish kuni")
-    date = models.DateField(verbose_name="Sana")
-    work_time = models.TimeField(null=True, verbose_name="Ish vaqti")
+    date = models.DateField(verbose_name="Sana", null=True, blank=True)
+    work_time = models.TimeField(
+        null=True, blank=True, verbose_name="Ish vaqti")
     arrival_time = models.TimeField(
         null=True, blank=True, verbose_name="Kelish vaqti")
+    left_time = models.TimeField(
+        null=True, blank=True, verbose_name="Ketish vaqti")
+
     late_minutes = models.PositiveIntegerField(
         null=True, blank=True, verbose_name="Kechikish daqiqasi")
     reason = models.TextField(null=True, blank=True, verbose_name="Sabab")
