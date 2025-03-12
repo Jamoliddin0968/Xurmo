@@ -41,7 +41,7 @@ class AttendanceAdmin(admin.ModelAdmin):
     list_display = ('user', 'date', 'work_time', 'arrival_time',
                     'late_minutes', 'reason',  'status')
     ordering = ['-id']
-    list_filter = ("user",)
+    list_filter = ("user", "date")
     readonly_fields = ("user", "date", "working_day", "work_time",
                        "arrival_time", "late_minutes", "status", "serial_id", "left_time")
     inlines = [AttendanceItemsInline]  # Inline qo'shish
