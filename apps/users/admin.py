@@ -39,7 +39,7 @@ class AttendanceItemsInline(admin.TabularInline):  # yoki admin.StackedInline
 @admin.register(Attendance)
 class AttendanceAdmin(admin.ModelAdmin):
     list_display = ('user', 'date', 'work_time', 'arrival_time',
-                    'late_minutes', 'reason',  'status')
+                    'late_minutes', 'left_time',  'status')
     ordering = ['-id']
     list_filter = ("user", "date")
     readonly_fields = ("user", "date", "working_day", "work_time",
