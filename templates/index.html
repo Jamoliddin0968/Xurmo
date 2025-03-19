@@ -16,14 +16,14 @@
 </head>
 
 <body>
-    {% comment %} <div class="page-loader">
+    <div class="page-loader">
         <div class="page-loader-body">
             <div class="cssload-container">
                 <div class="cssload-speeding-wheel"></div>
             </div>
             <p>Loading...</p>
         </div>
-    </div> {% endcomment %}
+    </div>
     <div class="page text-center">
         <header class="page-head">
             <div class="rd-navbar-wrap rd-navbar-minimal">
@@ -90,7 +90,7 @@
                 <div class="swiper-container swiper-slider" data-slide-effect="fade" data-autoplay="5000" data-min-height="600px">
                     <div class="swiper-wrapper">
                        
-                        <div class="swiper-slide" data-slide-bg="images/home-slide-1-1920x800.jpg">
+                        <div class="swiper-slide" data-slide-bg="{% static 'images/home-slide-1-1920x800.jpg' %}">
                             <div class="swiper-slide-caption text-center">
                                 <div class="shell">
                                     <div class="range range-sm-middle range-fix">
@@ -103,7 +103,7 @@
                                             <div class="offset-top-20"><a class="btn btn-burnt-sienna btn-md btn-shape-circle" href="index.html#" data-caption-animate="fadeInUpSmall" data-caption-delay="800">order online</a></div>
                                         </div>
                                         <div class="cell-sm-6 cell-md-7 cell-lg-8 text-lg-right veil reveal-sm-inline-block">
-                                            <div data-caption-animate="fadeInRotate" data-caption-delay="100"><img class="img-responsive reveal-inline-block" src="images/slide-caption-image-1-599x596.png" alt="" width="599" height="596"></div>
+                                            <div data-caption-animate="fadeInRotate" data-caption-delay="100"><img class="img-responsive reveal-inline-block" src="{% static 'images/slide-caption-image-1-599x596.png' %}" alt="" width="599" height="596"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -306,7 +306,7 @@
             <div class="shell">
                 <h4 class="font-default">Our&nbsp;Chefs</h4>
                 <div class="owl-carousel owl-carousel-1 offset-top-45" data-items="1" data-sm-items="2" data-md-items="3" data-dots="true" data-nav="false" data-stage-padding="15" data-loop="false" data-margin="30" data-mouse-drag="false">
-                    <div class="thumbnail-variant-4"><img src="images/team-small-1-250x250.jpg" alt="" width="250" height="250">
+                    <div class="thumbnail-variant-4"><img src="{% static 'images/team-small-1-250x250.jpg' %}" alt="" width="250" height="250">
                         <h5 class="title"><a class="text-primary" href="index.html#">Orni Stark</a></h5>
                         <p class="exeption big text-italic">Founder</p>
                         <ul class="list-inline text-middle">
@@ -316,7 +316,7 @@
                             <li><a class="text-primary icon icon-xs icon-circle fa-google-plus novi-icon" href="index.html#"></a></li>
                         </ul>
                     </div>
-                    <div class="thumbnail-variant-4"><img src="images/team-small-2-250x250.jpg" alt="" width="250" height="250">
+                    <div class="thumbnail-variant-4"><img src="{% static 'images/team-small-2-250x250.jpg' %}" alt="" width="250" height="250">
                         <h5 class="title"><a class="text-primary" href="index.html#">Biltam Robinson</a></h5>
                         <p class="exeption big text-italic">Head Chef</p>
                         <ul class="list-inline text-middle">
@@ -326,7 +326,7 @@
                             <li><a class="text-primary icon icon-xs icon-circle fa-google-plus novi-icon" href="index.html#"></a></li>
                         </ul>
                     </div>
-                    <div class="thumbnail-variant-4"><img src="images/team-small-3-250x250.jpg" alt="" width="250" height="250">
+                    <div class="thumbnail-variant-4"><img src="{% static 'images/team-small-3-250x250.jpg' %}" alt="" width="250" height="250">
                         <h5 class="title"><a class="text-primary" href="index.html#">Rabina Ives</a></h5>
                         <p class="exeption big text-italic">Pastry Chef</p>
                         <ul class="list-inline text-middle">
@@ -336,7 +336,7 @@
                             <li><a class="text-primary icon icon-xs icon-circle fa-google-plus novi-icon" href="index.html#"></a></li>
                         </ul>
                     </div>
-                    <div class="thumbnail-variant-4"><img src="images/team-small-4-250x250.jpg" alt="" width="250" height="250">
+                    <div class="thumbnail-variant-4"><img src="{% static 'images/team-small-4-250x250.jpg' %}" alt="" width="250" height="250">
                         <h5 class="title"><a class="text-primary" href="index.html#">Peter Emberson</a></h5>
                         <p class="exeption big text-italic">Assistant Chef</p>
                         <ul class="list-inline text-middle">
@@ -346,7 +346,7 @@
                             <li><a class="text-primary icon icon-xs icon-circle fa-google-plus novi-icon" href="index.html#"></a></li>
                         </ul>
                     </div>
-                    <div class="thumbnail-variant-4"><img src="images/team-small-5-250x250.jpg" alt="" width="250" height="250">
+                    <div class="thumbnail-variant-4"><img src="{% static 'images/team-small-5-250x250.jpg' %}" alt="" width="250" height="250">
                         <h5 class="title"><a class="text-primary" href="index.html#">Samantha Clark</a></h5>
                         <p class="exeption big text-italic">Administrator</p>
                         <ul class="list-inline text-middle">
@@ -356,7 +356,7 @@
                             <li><a class="text-primary icon icon-xs icon-circle fa-google-plus novi-icon" href="index.html#"></a></li>
                         </ul>
                     </div>
-                    <div class="thumbnail-variant-4"><img src="images/team-small-6-250x250.jpg" alt="" width="250" height="250">
+                    <div class="thumbnail-variant-4"><img src="{% static 'images/team-small-6-250x250.jpg' %}" alt="" width="250" height="250">
                         <h5 class="title"><a class="text-primary" href="index.html#">Ryan Ricks</a></h5>
                         <p class="exeption big text-italic">Sous Chef</p>
                         <ul class="list-inline text-middle">
@@ -378,19 +378,19 @@
                     </div>
                 </div>
                 <div class="range range-30 range-xs-center range-xs-middle">
-                    <div class="cell-sm-6 cell-md-3"><img src="images/brand-1-128x111.png" alt="" width="128" height="111"></div>
-                    <div class="cell-sm-6 cell-md-3"><img src="images/brand-2-129x102.png" alt="" width="129" height="102"></div>
-                    <div class="cell-sm-6 cell-md-3"><img src="images/brand-3-143x110.png" alt="" width="143" height="110"></div>
-                    <div class="cell-sm-6 cell-md-3"><img src="images/brand-4-142x102.png" alt="" width="142" height="102"></div>
+                    <div class="cell-sm-6 cell-md-3"><img src="{% static 'images/brand-1-128x111.png' %}" alt="" width="128" height="111"></div>
+                    <div class="cell-sm-6 cell-md-3"><img src="{% static 'images/brand-2-129x102.png' %}" alt="" width="129" height="102"></div>
+                    <div class="cell-sm-6 cell-md-3"><img src="{% static 'images/brand-3-143x110.png' %}" alt="" width="143" height="110"></div>
+                    <div class="cell-sm-6 cell-md-3"><img src="{% static 'images/brand-4-142x102.png' %}" alt="" width="142" height="102"></div>
                 </div>
             </div>
         </section>
         <section class="novi-section">
             <div class="range range-condensed" data-lightgallery="group" data-lg-thumbnail="false">
-                <div class="cell-xs-6 cell-md-3"><a class="thumbnail-gallery" data-lightgallery="item" href="images/index-gallery-1-1200x800_original.jpg" data-author=""><img src="images/index-gallery-1-480x394.jpg" alt="" width="480" height="394"></a></div>
-                <div class="cell-xs-6 cell-md-3"><a class="thumbnail-gallery" data-lightgallery="item" href="images/index-gallery-2-1200x800_original.jpg"><img src="images/index-gallery-2-480x394.jpg" alt="" width="480" height="394"></a></div>
-                <div class="cell-xs-6 cell-md-3"><a class="thumbnail-gallery" data-lightgallery="item" href="images/index-gallery-3-1200x800_original.jpg"><img src="images/index-gallery-3-480x394.jpg" alt="" width="480" height="394"></a></div>
-                <div class="cell-xs-6 cell-md-3"><a class="thumbnail-gallery" data-lightgallery="item" href="images/index-gallery-4-1200x800_original.jpg"><img src="images/index-gallery-4-480x394.jpg" alt="" width="480" height="394"></a></div>
+                <div class="cell-xs-6 cell-md-3"><a class="thumbnail-gallery" data-lightgallery="item" href="images/index-gallery-1-1200x800_original.jpg" data-author=""><img src="{% static 'images/index-gallery-1-480x394.jpg' %}" alt="" width="480" height="394"></a></div>
+                <div class="cell-xs-6 cell-md-3"><a class="thumbnail-gallery" data-lightgallery="item" href="images/index-gallery-2-1200x800_original.jpg"><img src="{% static 'images/index-gallery-2-480x394.jpg' %}" alt="" width="480" height="394"></a></div>
+                <div class="cell-xs-6 cell-md-3"><a class="thumbnail-gallery" data-lightgallery="item" href="images/index-gallery-3-1200x800_original.jpg"><img src="{% static 'images/index-gallery-3-480x394.jpg' %}" alt="" width="480" height="394"></a></div>
+                <div class="cell-xs-6 cell-md-3"><a class="thumbnail-gallery" data-lightgallery="item" href="images/index-gallery-4-1200x800_original.jpg"><img src="{% static 'images/index-gallery-4-480x394.jpg' %}" alt="" width="480" height="394"></a></div>
             </div>
         </section>
         <section class="section-50 section-sm-top-90 section-sm-bottom-100 novi-background bg-cover bg-white">
@@ -400,7 +400,7 @@
                     <div class="cell-sm-6 cell-md-4">
                         <blockquote class="quote-modern">
                             <div class="quote-header divider-custom">
-                                <div><img class="img-circle" src="images/testimonials-01-104x104.jpg" alt="" width="104" height="104"></div>
+                                <div><img class="img-circle" src="{% static 'images/testimonials-01-104x104.jpg' %}" alt="" width="104" height="104"></div>
                             </div>
                             <div class="quote-body">
                                 <h6>The Best Burgers in the Area</h6>
@@ -412,7 +412,7 @@
                     <div class="cell-sm-6 cell-md-4">
                         <blockquote class="quote-modern">
                             <div class="quote-header divider-custom">
-                                <div><img class="img-circle" src="images/testimonials-03-104x104.jpg" alt="" width="104" height="104"></div>
+                                <div><img class="img-circle" src="{% static 'images/testimonials-03-104x104.jpg' %}" alt="" width="104" height="104"></div>
                             </div>
                             <div class="quote-body">
                                 <h6>There are Burgers for Vegetarians</h6>
@@ -424,7 +424,7 @@
                     <div class="cell-sm-6 cell-md-4">
                         <blockquote class="quote-modern">
                             <div class="quote-header divider-custom">
-                                <div><img class="img-circle" src="images/testimonials-02-104x104.jpg" alt="" width="104" height="104"></div>
+                                <div><img class="img-circle" src="{% static 'images/testimonials-02-104x104.jpg' %}" alt="" width="104" height="104"></div>
                             </div>
                             <div class="quote-body">
                                 <h6>Your French Fries are the Best!</h6>
@@ -436,7 +436,7 @@
                     <div class="cell-sm-6 cell-md-4">
                         <blockquote class="quote-modern">
                             <div class="quote-header divider-custom">
-                                <div><img class="img-circle" src="images/testimonials-02-104x104.jpg" alt="" width="104" height="104"></div>
+                                <div><img class="img-circle" src="{% static 'images/testimonials-02-104x104.jpg' %}" alt="" width="104" height="104"></div>
                             </div>
                             <div class="quote-body">
                                 <h6>Your French Fries are the Best!</h6>
@@ -448,7 +448,7 @@
                     <div class="cell-sm-6 cell-md-4">
                         <blockquote class="quote-modern">
                             <div class="quote-header divider-custom">
-                                <div><img class="img-circle" src="images/testimonials-02-104x104.jpg" alt="" width="104" height="104"></div>
+                                <div><img class="img-circle" src="{% static 'images/testimonials-02-104x104.jpg' %}" alt="" width="104" height="104"></div>
                             </div>
                             <div class="quote-body">
                                 <h6>Your French Fries are the Best!</h6>
@@ -464,7 +464,7 @@
             <div class="bg-gray-darker section-top-50 section-bottom-60 novi-background bg-cover">
                 <div class="shell">
                     <div class="range border-left-cell range-50">
-                        <div class="cell-sm-6 cell-md-5 cell-lg-4"><a class="brand brand-inverse reveal-inline-block" href="index.html"><img class="brand-logo-dark" src="images/logo-280x60.png" alt="" width="280" height="60"><img class="brand-logo-light" src="images/logo-inverse-280x60.png" alt="" width="280" height="60"></a>
+                        <div class="cell-sm-6 cell-md-5 cell-lg-4"><a class="brand brand-inverse reveal-inline-block" href="index.html"><img class="brand-logo-dark" src="{% static 'images/logo-280x60.png' %}" alt="" width="280" height="60"><img class="brand-logo-light" src="images/logo-inverse-280x60.png" alt="" width="280" height="60"></a>
                             <p class=" contact-info offset-top-20 mr-left-20">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint esse, ullam officiis a? Officiis fugiat consectetur deleniti, illum iste electus, nemo est?</p>
                             <ul class="list-unstyled contact-info offset-top-20">
                                 <li>
@@ -547,10 +547,10 @@
             </div>
         </footer>
     </div>
-    <div class="snackbars" id="form-output-global"></div><a class="builder-button" href="http://whizthemes.com/builder/b_restoral/restoral-builder" target="_blank"><img src="images/novi-icon-26x26.png" alt="" width="26" height="26">Try builder</a>
+    {% comment %} <div class="snackbars" id="form-output-global"></div><a class="builder-button" href="http://whizthemes.com/builder/b_restoral/restoral-builder" target="_blank"><img src="{% static 'images/novi-icon-26x26.png' %}" alt="" width="26" height="26">Try builder</a> {% endcomment %}
     <div class="snackbars" id="form-output-global"></div>
-    <script src="js/core.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="{% static 'js/core.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 
 </html>
