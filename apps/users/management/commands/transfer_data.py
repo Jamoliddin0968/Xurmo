@@ -12,7 +12,7 @@ class Command(BaseCommand):
         source = 'default'  # SQLite
         target = 'mysql'    # MySQL
 
-        models = [CustomUser, WorkingDay, Attendance, AttendanceItems]
+        models = apps.get_models()
 
         for model in models:
             model_name = model.__name__
