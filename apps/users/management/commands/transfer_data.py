@@ -1,7 +1,8 @@
 from django.apps import apps
 from django.core.management.base import BaseCommand
 
-from apps.users.models import Attendance, AttendanceItems
+from apps.users.models import (Attendance, AttendanceItems, CustomUser,
+                               WorkingDay)
 
 
 class Command(BaseCommand):
@@ -11,7 +12,7 @@ class Command(BaseCommand):
         source = 'default'  # SQLite
         target = 'mysql'    # MySQL
 
-        models = [Attendance, AttendanceItems]
+        models = [CustomUser, WorkingDay, Attendance, AttendanceItems]
 
         for model in models:
             model_name = model.__name__
@@ -23,7 +24,7 @@ class Command(BaseCommand):
 
                 for obj in objects:
                     try:
-                        obj.pk = None
+                        # obj.pk = None
                         obj.save(using=target)
                     except Exception as e:
                         self.stdout.write(self.style.ERROR(
