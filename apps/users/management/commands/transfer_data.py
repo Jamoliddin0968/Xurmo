@@ -1,8 +1,7 @@
 from django.apps import apps
 from django.core.management.base import BaseCommand
 
-from apps.users.models import (Attendance, AttendanceItems, CustomUser,
-                               WorkingDay)
+from apps.users.models import Attendance, AttendanceItems
 
 
 class Command(BaseCommand):
