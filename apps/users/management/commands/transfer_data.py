@@ -23,12 +23,12 @@ class Command(BaseCommand):
                     f"{model_name}: {total} ta obyekt ko'chirilmoqda...")
 
                 for obj in objects:
-                    obj.pk = None  # yangi obyekt sifatida saqlash
+                    obj.pk = None
                     obj.save(using=target)
 
                 self.stdout.write(self.style.SUCCESS(
-                    f"✅ {model_name}: {total} ta obyekt kochirildi."))
+                    f" {model_name}: {total} ta obyekt kochirildi."))
 
             except Exception as e:
                 self.stdout.write(self.style.ERROR(
-                    f"❌ {model_name} uchun xatolik: {e}"))
+                    f" {model_name} uchun xatolik: {e}"))
