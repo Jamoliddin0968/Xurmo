@@ -7,3 +7,4 @@ pydantic
 celery
 django-jazzmin
 redis
+python-decouple
