@@ -27,7 +27,7 @@ class Command(BaseCommand):
                     obj.save(using=target)
 
                 self.stdout.write(self.style.SUCCESS(
-                    f"✅ {model_name}: {total} ta obyekt ko‘chirildi."))
+                    f"✅ {model_name}: {total} ta obyekt kochirildi."))
 
             except Exception as e:
                 self.stdout.write(self.style.ERROR(
