@@ -12,7 +12,7 @@ class Command(BaseCommand):
         source = 'default'  # SQLite
         target = 'mysql'    # MySQL
 
-        models = [CustomUser, WorkingDay, Attendance, AttendanceItems]
+        models = [Attendance, AttendanceItems]
 
         for model in models:
             model_name = model.__name__
@@ -23,8 +23,12 @@ class Command(BaseCommand):
                     f"{model_name}: {total} ta obyekt ko'chirilmoqda...")
 
                 for obj in objects:
-                    obj.pk = None
-                    obj.save(using=target)
+                    try:
+                        obj.pk = None
+                        obj.save(using=target)
+                    except Exception as e:
+                        self.stdout.write(self.style.ERROR(
+                            f" {model_name} uchun xatolik: {e}"))
 
                 self.stdout.write(self.style.SUCCESS(
                     f" {model_name}: {total} ta obyekt kochirildi."))
