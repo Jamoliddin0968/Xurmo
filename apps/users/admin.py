@@ -23,7 +23,7 @@ admin.site.register(CustomUser, CustomUserAdmin)
 
 class AttendanceItemsInline(admin.TabularInline):  # yoki admin.StackedInline
     model = AttendanceItems
-    readonly_fields = ("marked_at",  "status", )
+    readonly_fields = ("marked_at",)
     can_delete = False
     exclude = ("user", "data", "serial_id")
 
@@ -31,9 +31,9 @@ class AttendanceItemsInline(admin.TabularInline):  # yoki admin.StackedInline
         """Admin panelda yangi 'AttendanceItems' qo‘shish imkoniyatini o‘chirish"""
         return False  # Yangi element qo‘shishni cheklash
 
-    def has_change_permission(self, request, obj=None):
-        """Mavjud 'AttendanceItems' obyektlarini tahrirlashga ruxsat berish"""
-        return True
+    # def has_change_permission(self, request, obj=None):
+    #     """Mavjud 'AttendanceItems' obyektlarini tahrirlashga ruxsat berish"""
+    #     return True
 
 
 @admin.register(Attendance)

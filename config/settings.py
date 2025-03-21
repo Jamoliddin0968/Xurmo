@@ -173,3 +173,7 @@ CELERY_BEAT_SCHEDULE = {
         "schedule": crontab(hour=4, minute=1),
     },
 }
+
+
+BOT_TOKEN = config("BOT_TOKEN")
+ATTENDANCE_CHAT_ID = config("ATTENDANCE_CHAT_ID")

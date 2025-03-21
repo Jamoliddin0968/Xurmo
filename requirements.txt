@@ -9,3 +9,4 @@ django-jazzmin
 redis
 python-decouple
 mysqlclient
+pytelegrambotapi

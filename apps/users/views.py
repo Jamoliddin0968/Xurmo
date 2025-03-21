@@ -4,6 +4,7 @@ from datetime import date, datetime, time, timedelta, timezone
 from json import loads
 from uuid import uuid4
 
+from django.conf import settings
 from django.db.models import Count, F, Q, Sum
 from django.http import HttpRequest
 from django.utils.timezone import make_aware
@@ -12,11 +13,14 @@ from rest_framework import filters, generics, permissions, viewsets
 from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from telebot import TeleBot
 
-from .models import (ATTENDANCE_STATUS_CHOICES, Attendance, AttendanceItems,
-                     CustomUser, WorkingDay)
+from .models import (ATTENDANCE_ITEM_STATUS_CHOICES, ATTENDANCE_STATUS_CHOICES,
+                     Attendance, AttendanceItems, CustomUser, WorkingDay)
 from .schema import Event
 from .serializers import AttendanceSerializer, CustomUserSerializer
+
+bot = TeleBot(settings.BOT_TOKEN)
 
 
 class CustomUserViewSet(viewsets.ModelViewSet):
@@ -134,6 +138,14 @@ class ReceiveDataView(GenericAPIView):
         elif attendance.serial_id != event.AccessControllerEvent.serialNo:
             attendance.left_time = event.dateTime
             attendance.save()
+
+        attendance_item = AttendanceItems.objects.filter(
+            attendance=attendance).order_by("id").last()
+        status = ATTENDANCE_ITEM_STATUS_CHOICES.CAME
+        if attendance_item:
+            if attendance_item.status == ATTENDANCE_ITEM_STATUS_CHOICES.CAME:
+                status = ATTENDANCE_ITEM_STATUS_CHOICES.LEFT
+        status_label = ATTENDANCE_ITEM_STATUS_CHOICES(status).label
         AttendanceItems.objects.get_or_create(
             serial_id=event.AccessControllerEvent.serialNo,
             defaults={
@@ -141,8 +153,16 @@ class ReceiveDataView(GenericAPIView):
                 "attendance": attendance,
                 "marked_at": event.dateTime,
                 "serial_id": event.AccessControllerEvent.serialNo,
-                'data': event.model_dump_json()
+                'data': event.model_dump_json(),
+                'status': status
             }
         )
+        try:
+            text = f"{user.get_full_name()} {event.dateTime.time()} da {status_label}."
+            bot.send_message(
+                settings.ATTENDANCE_CHAT_ID,
+                text=text)
+        except Exception as e:
+            print(e)
 
         return Response({"message": "Attendance updated successfully."}, status=200)
