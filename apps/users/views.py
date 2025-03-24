@@ -146,6 +146,8 @@ class ReceiveDataView(GenericAPIView):
             if attendance_item.status == ATTENDANCE_ITEM_STATUS_CHOICES.CAME:
                 status = ATTENDANCE_ITEM_STATUS_CHOICES.LEFT
         status_label = ATTENDANCE_ITEM_STATUS_CHOICES(status).label
+        if attendance_item and (event.dateTime-attendance_item.marked_at) < timedelta(minutes=2):
+            return Response({"message": f"{(event.dateTime-attendance_item.marked_at)}"}, status=200)
         AttendanceItems.objects.get_or_create(
             serial_id=event.AccessControllerEvent.serialNo,
             defaults={
