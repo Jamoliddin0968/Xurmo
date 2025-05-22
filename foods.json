@@ -1,0 +1,190 @@
+{
+    "data": [{
+            "name": "Osh (qora qiltiriq)",
+            "price": 315000,
+            "weight": "1kg",
+            "delivery": true
+        },
+        {
+            "name": "Osh (qora qiltiriq)",
+            "price": 285000,
+            "weight": "1kg",
+            "delivery": true
+        },
+        {
+            "name": "Osh (chong'ara)",
+            "price": 283000,
+            "weight": "1kg",
+            "delivery": true
+        },
+        {
+            "name": "Osh (chong'ara)",
+            "price": 252000,
+            "weight": "1kg",
+            "delivery": true
+        },
+        {
+            "name": "Osh (lazer)",
+            "price": 231000,
+            "weight": "1kg",
+            "delivery": true
+        },
+        {
+            "name": "Achchiq osh",
+            "price": null,
+            "weight": null,
+            "delivery": true
+        },
+        {
+            "name": "Achchiq go'sht",
+            "price": 187000,
+            "weight": "1kg",
+            "delivery": true
+        },
+        {
+            "name": "Siltama",
+            "price": 187000,
+            "weight": "1kg",
+            "delivery": true
+        },
+        {
+            "name": "Pirojok",
+            "price": 200000,
+            "weight": "1kg",
+            "delivery": true
+        },
+        {
+            "name": "Pirojok (behi oshqovoq)",
+            "price": null,
+            "weight": null,
+            "delivery": true
+        },
+        {
+            "name": "Pirojok (do'lmali)",
+            "price": 200000,
+            "weight": "1kg",
+            "delivery": true
+        },
+        {
+            "name": "Bosma (assorti)",
+            "price": 193000,
+            "weight": "1kg",
+            "delivery": true
+        },
+        {
+            "name": "Bosma do'lma",
+            "price": 193000,
+            "weight": "1kg",
+            "delivery": true
+        },
+        {
+            "name": "Jiz",
+            "price": 187000,
+            "weight": "1kg",
+            "delivery": true
+        },
+        {
+            "name": "Mastava",
+            "price": 204000,
+            "weight": "1kg",
+            "delivery": true
+        },
+        {
+            "name": "Shor'va",
+            "price": 195000,
+            "weight": "1kg",
+            "delivery": true
+        },
+        {
+            "name": "Osh (qora qiltiriq)",
+            "price": 293000,
+            "weight": "1kg",
+            "delivery": false
+        },
+        {
+            "name": "Osh (qora qiltiriq)",
+            "price": 266000,
+            "weight": "1kg",
+            "delivery": false
+        },
+        {
+            "name": "Osh (chong'ara)",
+            "price": 264000,
+            "weight": "1kg",
+            "delivery": false
+        },
+        {
+            "name": "Osh (chong'ara)",
+            "price": 235000,
+            "weight": "1kg",
+            "delivery": false
+        },
+        {
+            "name": "Osh (lazer)",
+            "price": 215000,
+            "weight": "1kg",
+            "delivery": false
+        },
+        {
+            "name": "Achchiq osh Achchiq go'sht",
+            "price": 168000,
+            "weight": "1kg",
+            "delivery": false
+        },
+        {
+            "name": "Siltama",
+            "price": 168000,
+            "weight": "1kg",
+            "delivery": false
+        },
+        {
+            "name": "Pirojok",
+            "price": 180000,
+            "weight": "1kg",
+            "delivery": false
+        },
+        {
+            "name": "Pirojok (behi oshqovoq)",
+            "price": 180000,
+            "weight": "1kg",
+            "delivery": false
+        },
+        {
+            "name": "Pirojok (do'lmali)",
+            "price": 180000,
+            "weight": "1kg",
+            "delivery": false
+        },
+        {
+            "name": "Bosma (assorti)",
+            "price": 174000,
+            "weight": "1kg",
+            "delivery": false
+        },
+        {
+            "name": "Bosma do'lma",
+            "price": 175000,
+            "weight": "1kg",
+            "delivery": false
+        },
+        {
+            "name": "Jiz",
+            "price": 168000,
+            "weight": "1kg",
+            "delivery": false
+        },
+        {
+            "name": "Mastava",
+            "price": 191000,
+            "weight": "1kg",
+            "delivery": false
+        },
+        {
+            "name": "Sho'rva",
+            "price": 182000,
+            "weight": "1kg",
+            "delivery": false
+        }
+    ]
+
+}

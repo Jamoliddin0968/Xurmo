@@ -29,11 +29,7 @@ class AttendanceItemsInline(admin.TabularInline):  # yoki admin.StackedInline
 
     def has_add_permission(self, request, obj=None):
         """Admin panelda yangi 'AttendanceItems' qo‘shish imkoniyatini o‘chirish"""
-        return False  # Yangi element qo‘shishni cheklash
-
-    # def has_change_permission(self, request, obj=None):
-    #     """Mavjud 'AttendanceItems' obyektlarini tahrirlashga ruxsat berish"""
-    #     return True
+        return False  
 
 
 @admin.register(Attendance)
